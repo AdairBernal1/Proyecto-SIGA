@@ -1,18 +1,37 @@
 
 package proyecto1;
 
-import static java.util.Objects.hash;
-import javax.swing.JOptionPane;
+import java.sql.*;
 
 public class Inicio extends javax.swing.JFrame {
     
-    //Menu frmMenu;
-
+    Conexion cc = new Conexion();
+    Connection con = cc.Conexion();
+    
     public Inicio() {
         initComponents();
         setLocationRelativeTo(null);
     }
-
+    public boolean validarUsuario(String user, String pass){
+        boolean status = false;
+        try{
+            // 2. Create a statement
+            PreparedStatement myStmt = con.prepareStatement("select * from admins where username = ? and password = ?");
+            // 3. Set PreparedStatement values
+            myStmt.setString(1, user);
+            myStmt.setString(2, pass);
+            // 4. Execute SQL Query
+            ResultSet myRs = myStmt.executeQuery();
+            // 5. Process the result set
+            if(myRs.next()){
+                status = true;
+            }
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return status;
+    }
   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -156,17 +175,15 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String user = txtUsuario.getText();
+        String pass = String.valueOf(txtPassword.getPassword());
         
-        String pass = new String(txtPassword.getPassword());
-        
-        if(!txtUsuario.getText().equals("") && !pass.equals("")){
-                
-                Menu abrir = new Menu();
-                abrir.setVisible(true);
-                this.setVisible(false);
-        } else {
-            JOptionPane.showMessageDialog(null, "Debe ingresar sus datos");
+        if(validarUsuario(user, pass)){
+            Menu abrir = new Menu();
+            abrir.setVisible(true);
+            this.dispose();
         }
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /** Validar usuarios registrados
