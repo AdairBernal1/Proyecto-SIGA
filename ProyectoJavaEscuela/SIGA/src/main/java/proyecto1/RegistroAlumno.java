@@ -53,7 +53,7 @@ public class RegistroAlumno extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtNombreAlumno = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        txtApellidoAlumno = new javax.swing.JTextField();
+        txtNumAlumno = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -585,6 +585,12 @@ public class RegistroAlumno extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(RegistroAlumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
