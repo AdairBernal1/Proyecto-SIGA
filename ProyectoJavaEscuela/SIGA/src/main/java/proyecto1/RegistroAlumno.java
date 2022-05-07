@@ -1,15 +1,15 @@
 
 package proyecto1;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.DefaultListModel;
+import dao.AlumnoDAO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-public class RegistrarAlumno extends javax.swing.JFrame {
+public class RegistroAlumno extends javax.swing.JFrame {
 
 
-    public RegistrarAlumno() {
+    public RegistroAlumno() {
         initComponents();
         setLocationRelativeTo(null); //ventana aparece centrada
         Limpiar();
@@ -49,7 +49,7 @@ public class RegistrarAlumno extends javax.swing.JFrame {
         btnPrincipal = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        txtNumAlumno = new javax.swing.JTextField();
+        txtApellidoAlumno = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtNombreAlumno = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -289,7 +289,7 @@ public class RegistrarAlumno extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Nombre");
 
-        txtNumAlumno.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtApellidoAlumno.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Telefono");
@@ -300,7 +300,7 @@ public class RegistrarAlumno extends javax.swing.JFrame {
         jLabel9.setText("Apellido");
         jLabel9.setToolTipText("");
 
-        txtApellidoAlumno.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtNumAlumno.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -552,22 +552,11 @@ public class RegistrarAlumno extends javax.swing.JFrame {
         Limpiar();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private List<Alumnos> lista=new ArrayList<Alumnos>();
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        Alumnos a=new Alumnos();
-        a.setNumero(this.txtNumAlumno.getText());
-        a.setNombre(this.txtNombreAlumno.getText());
-        a.setApellido(this.txtApellidoAlumno.getText());
-        a.setAño(this.txtAño.getText());
-        a.setCantidad(this.lblCantidad.getText());
-
-        if (txtNombreAlumno !=null || txtApellidoAlumno !=null || txtNumAlumno !=null || txtAño !=null || lblCantidad !=null) {
-            JOptionPane.showMessageDialog(rootPane, "Faltan datos");
-        } else {
-            lista.add(a);
-            actualizarLista();
-            JOptionPane.showMessageDialog(rootPane, "Alumno registrado correctamente");
-            Limpiar();
+        try {
+            guardarAlumno();
+        } catch (Exception ex) {
+            Logger.getLogger(RegistroAlumno.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
    
@@ -588,40 +577,23 @@ public class RegistrarAlumno extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistrarAlumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroAlumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistrarAlumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroAlumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistrarAlumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroAlumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistrarAlumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroAlumno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistrarAlumno().setVisible(true);
+                new RegistroAlumno().setVisible(true);
             }
         });
-    }
-    
-    private void Limpiar() {
-        txtNumAlumno.setText("");
-        txtNombreAlumno.setText("");
-        txtApellidoAlumno.setText("");
-        txtAño.setText("");
-        lblCantidad.setText("");
-        lblFotoAlumno.setIcon(null);
-        
-    }
-        private void actualizarLista() {
-        DefaultListModel datos = new DefaultListModel();
-        for (int i = 0; i < lista.size(); i++) {
-            Alumnos a = lista.get(i);
-            datos.addElement(a.getNombreCompleto());
-        }
-        //this.listAlumnos.setModel(datos);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -677,5 +649,41 @@ public class RegistrarAlumno extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    private void Limpiar() {
+        txtApellidoAlumno.setText("");
+        txtNombreAlumno.setText("");
+        txtNumAlumno.setText("");
+        txtAño.setText("");
+        lblCantidad.setText("");
+        lblFotoAlumno.setIcon(null);
+        
+    }
+    
+    private void guardarAlumno() throws Exception {
+        AlumnoDAO dao = new AlumnoDAO();
+        Alumno a=new Alumno();
+        a.setNombre(this.txtNombreAlumno.getText());
+        a.setApellido(this.txtApellidoAlumno.getText());
+        a.setTelefono(this.txtNumAlumno.getText());
+        a.setTipoInsc((String) this.cbxInscrip.getSelectedItem());
+        
+        String grupo;
+        grupo = (String) this.cbxDia.getSelectedItem() + (String) this.cbxHorario.getSelectedItem();
+        a.setGrupo(grupo);
+        
+        String fechaInsc;
+        fechaInsc = this.txtAño.getText() + (String)this.cbxMesInicio.getSelectedItem() + (String)this.cbxDiaInicio.getSelectedItem();
+        a.setFechaInsc(fechaInsc);
+
+        if ("".equals(txtNombreAlumno.getText()) || "".equals(txtNumAlumno.getText()) || "".equals(txtApellidoAlumno.getText()) || "".equals(txtAño.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "Faltan datos");
+        } 
+        else {
+            dao.agregarAlumno(a);
+            JOptionPane.showMessageDialog(rootPane, "Alumno registrado correctamente");
+            Limpiar();
+        }    
+    }
 
 }

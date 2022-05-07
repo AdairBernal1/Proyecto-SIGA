@@ -1,37 +1,17 @@
 
 package proyecto1;
 
-import java.sql.*;
-import javax.swing.JOptionPane;
+import dao.AdminDAO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Inicio extends javax.swing.JFrame {
     
-    Conexion cc = new Conexion();
-    Connection con = cc.Conexion();
+    private final AdminDAO dao = new AdminDAO();
     
     public Inicio() {
         initComponents();
         setLocationRelativeTo(null);
-    }
-    public boolean validarUsuario(String user, String pass){
-        boolean status = false;
-        try{
-            // 2. Create a statement
-            PreparedStatement myStmt = con.prepareStatement("select * from admins where username = ? and password = ?");
-            // 3. Set PreparedStatement values
-            myStmt.setString(1, user);
-            myStmt.setString(2, pass);
-            // 4. Execute SQL Query
-            ResultSet myRs = myStmt.executeQuery();
-            // 5. Process the result set
-            if(myRs.next()){
-                status = true;
-            }
-        }
-        catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return status;
     }
   
     @SuppressWarnings("unchecked")
@@ -105,7 +85,7 @@ public class Inicio extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
+                .addContainerGap(71, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -135,18 +115,19 @@ public class Inicio extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3))
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -161,13 +142,13 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(234, 234, 234)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(29, Short.MAX_VALUE))
         );
@@ -176,18 +157,11 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String user = txtUsuario.getText();
-        String pass = String.valueOf(txtPassword.getPassword());
-        
-        if(validarUsuario(user, pass)){
-            Menu abrir = new Menu();
-            abrir.setVisible(true);
-            this.dispose();
-        } else {    
-            JOptionPane.showMessageDialog(rootPane, "Usuario o contraseña incorrectos. Intente nuevamente", "Aviso", JOptionPane.OK_OPTION);
-            txtPassword.setText("");
+        try {
+            iniciarSesion();
+        } catch (Exception ex) {
+            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /** Validar usuarios registrados
@@ -265,4 +239,17 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    private void iniciarSesion() throws Exception {
+        
+        String user = txtUsuario.getText();
+        String pass = String.valueOf(txtPassword.getPassword());
+        
+        if(dao.validarUsuario(user, pass)){
+            Menu abrir = new Menu();
+            abrir.setVisible(true);
+            this.dispose();
+        }
+       
+    }
 }
