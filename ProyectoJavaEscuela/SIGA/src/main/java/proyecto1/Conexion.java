@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-class Conexion {
+public class Conexion {
     static final String JDBC_Driver="com.mysql.cj.jdbc.Driver";
     Connection conn = null;
     static final String DB_URL = "jdbc:mysql://localhost:3306/siga_bd";

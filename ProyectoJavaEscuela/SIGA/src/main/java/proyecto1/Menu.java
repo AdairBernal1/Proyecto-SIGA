@@ -266,7 +266,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBuscarCaretUpdate
 
     private void bntAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAltaActionPerformed
-        RegistrarAlumno abrir = new RegistrarAlumno();
+        RegistroAlumno abrir = new RegistroAlumno();
         abrir.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_bntAltaActionPerformed
@@ -278,7 +278,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPrincipalActionPerformed
 
     private void btnNvoGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNvoGrupoActionPerformed
-        CrearGrupo abrir = new CrearGrupo();
+        RegistroGrupo abrir = new RegistroGrupo();
         abrir.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnNvoGrupoActionPerformed

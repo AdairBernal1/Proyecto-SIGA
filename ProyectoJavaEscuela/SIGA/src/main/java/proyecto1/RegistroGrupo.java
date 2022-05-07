@@ -7,9 +7,9 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 
-public class CrearGrupo extends javax.swing.JFrame {
+public class RegistroGrupo extends javax.swing.JFrame {
 
-    public CrearGrupo() {
+    public RegistroGrupo() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -241,9 +241,9 @@ public class CrearGrupo extends javax.swing.JFrame {
         abrir.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
-    private List<Grupos> lista=new ArrayList<Grupos>();
+    private List<Grupo> lista=new ArrayList<Grupo>();
     private void btnAltaGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaGrupoActionPerformed
-        Grupos a=new Grupos();
+        Grupo a=new Grupo();
 //        String variable = (String) jComboBox1.getSelectedItem();
 
        
@@ -270,20 +270,21 @@ public class CrearGrupo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CrearGrupo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroGrupo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CrearGrupo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroGrupo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CrearGrupo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroGrupo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CrearGrupo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroGrupo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CrearGrupo().setVisible(true);
+                new RegistroGrupo().setVisible(true);
             }
         });
     }
@@ -291,7 +292,7 @@ public class CrearGrupo extends javax.swing.JFrame {
 private void actualizarLista() {
         DefaultListModel datos = new DefaultListModel();
         for (int i = 0; i < lista.size(); i++) {
-            Grupos a = lista.get(i);
+            Grupo a = lista.get(i);
             datos.addElement(a.getGrupo());
         }
         //this.listAlumnos.setModel(datos);
