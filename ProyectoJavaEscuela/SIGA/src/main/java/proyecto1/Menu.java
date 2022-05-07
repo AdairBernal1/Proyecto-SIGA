@@ -1,6 +1,8 @@
 
 package proyecto1;
 
+import javax.swing.JOptionPane;
+
 public class Menu extends javax.swing.JFrame {
 
     public Menu() {
@@ -24,7 +26,7 @@ public class Menu extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextPane2 = new javax.swing.JTextPane();
         jPanel3 = new javax.swing.JPanel();
-        btnConf = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
         btnNvoGrupo = new javax.swing.JButton();
         bntAlta = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -140,11 +142,11 @@ public class Menu extends javax.swing.JFrame {
         jPanel3.setToolTipText("");
         jPanel3.setName(""); // NOI18N
 
-        btnConf.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        btnConf.setText("Configuración");
-        btnConf.addActionListener(new java.awt.event.ActionListener() {
+        btnLogout.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnLogout.setText("Cerrar sesión");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfActionPerformed(evt);
+                btnLogoutActionPerformed(evt);
             }
         });
 
@@ -171,7 +173,7 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnConf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnNvoGrupo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(bntAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(14, Short.MAX_VALUE))
@@ -184,7 +186,7 @@ public class Menu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnNvoGrupo)
                 .addGap(80, 80, 80)
-                .addComponent(btnConf, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
 
@@ -281,11 +283,16 @@ public class Menu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnNvoGrupoActionPerformed
 
-    private void btnConfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfActionPerformed
-//        Configuracion abrir = new Configuracion();
-//        abrir.setVisible(true);
-//        this.dispose();
-    }//GEN-LAST:event_btnConfActionPerformed
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+if (JOptionPane.showConfirmDialog(null, "¿Desea cerrar la sesión?", "WARNING",
+        JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+            Inicio abrir = new Inicio();
+            abrir.setVisible(true);
+            this.dispose();
+    } else {
+    // no option
+    }
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -322,8 +329,8 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntAlta;
     private javax.swing.JButton btnAlumnos;
-    private javax.swing.JButton btnConf;
     private javax.swing.JButton btnGrupos;
+    private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnNvoGrupo;
     private javax.swing.JButton btnPrincipal;
     private javax.swing.JLabel jLabel2;
