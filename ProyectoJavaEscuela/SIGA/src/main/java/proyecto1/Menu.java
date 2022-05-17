@@ -48,7 +48,7 @@ public class Menu extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("menu");
+        setTitle("Menú");
         setBackground(new java.awt.Color(204, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocation(new java.awt.Point(20, 40));
@@ -107,7 +107,7 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap(177, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
 
         pnlLogoEsc.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnlLogoEsc.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N

@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 public class RegistroGrupo extends javax.swing.JFrame {
 
     public RegistroGrupo() {
-        initComponents();
+        initComponents();        
         setLocationRelativeTo(null);
     }
 
@@ -35,6 +35,7 @@ public class RegistroGrupo extends javax.swing.JFrame {
         btnAltaGrupo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Rgistrar Grupo");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 

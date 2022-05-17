@@ -2,8 +2,11 @@
 package proyecto1;
 
 import dao.AdminDAO;
+import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class Inicio extends javax.swing.JFrame {
     
@@ -35,6 +38,7 @@ public class Inicio extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextPane1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Inicio de sesión");
 
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -134,10 +138,6 @@ public class Inicio extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
             .addGroup(layout.createSequentialGroup()
                 .addGap(234, 234, 234)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -155,7 +155,6 @@ public class Inicio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             iniciarSesion();
@@ -164,33 +163,6 @@ public class Inicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /** Validar usuarios registrados
-             SqlUsuarios modSql = new SqlUsuarios();
-        Usuarios mod = new Usuarios();
-        
-        String pass = new String(txtPassword.getPassword());
-        
-        if(!txtUsuario.getText().equals("") && !pass.equals("")){
-            String nuevoPass = hash.sha1(pass);
-            
-            mod.setUsuario(txtUsuario.getText());
-            mod.setPassword(nuevoPass);
-            
-            if(modSql.Inicio(mod)){
-                
-                Menu abrir = new Menu();
-                abrir.setVisible(true);
-                this.setVisible(false);
-                
-            } else {
-                JOptionPane.showMessageDialog(null, "Datos incorrectos");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Debe ingresar sus datos");
-        }
-    }
-     */
-    
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -245,11 +217,19 @@ public class Inicio extends javax.swing.JFrame {
         String user = txtUsuario.getText();
         String pass = String.valueOf(txtPassword.getPassword());
         
-        if(dao.validarUsuario(user, pass)){
+        if(!txtUsuario.getText().equals("") && !pass.equals("")){
+            
+            if(dao.validarUsuario(user, pass)){
             Menu abrir = new Menu();
             abrir.setVisible(true);
             this.dispose();
+        } else {
+                JOptionPane.showMessageDialog(null, "Datos incorrectos");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe ingresar sus datos");
         }
+        
        
     }
 }
