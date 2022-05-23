@@ -3,17 +3,30 @@ package proyecto1;
 
 import dao.AdminDAO;
 import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class Inicio extends javax.swing.JFrame {
     
     private final AdminDAO dao = new AdminDAO();
     
     public Inicio() {
+        //getContentPane().setBackground(new Color(129, 227, 222));
         initComponents();
+        try {
+            Fondo fondo = new Fondo(ImageIO.read(new File("C:/Users/Carla Olvera/Documents/GitHub/Proyecto-SIGA/ProyectoJavaEscuela/SIGA/src/main/java/proyecto1/Fondo8.jpg")));
+            JPanel panel = (JPanel) this.getContentPane();
+            panel.setBorder(fondo);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        jPanel1.setBackground(new Color(219, 166, 118, 200));
+        jPanel2.setBackground(new Color(82, 102, 222, 150));
         setLocationRelativeTo(null);
     }
   
@@ -52,6 +65,7 @@ public class Inicio extends javax.swing.JFrame {
 
         txtPassword.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        jButton1.setBackground(new java.awt.Color(51, 102, 255));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton1.setText("Iniciar sesión");
         jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
