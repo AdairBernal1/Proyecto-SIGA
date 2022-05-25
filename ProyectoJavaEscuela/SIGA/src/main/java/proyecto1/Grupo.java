@@ -1,10 +1,6 @@
 
 package proyecto1;
 
-/**
- *
- * @author CarlaOlvera
- */
 class Grupo {
 
     Object getGrupo() {
