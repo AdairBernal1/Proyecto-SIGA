@@ -37,6 +37,7 @@ public class RegistroAlumno extends javax.swing.JFrame {
         jPanel5.setBackground(new Color(0,0,0,50));
         setLocationRelativeTo(null); //ventana aparece centrada
         Limpiar();
+        
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -454,6 +455,7 @@ public class RegistroAlumno extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
     if (JOptionPane.showConfirmDialog(null, "¿Desea cancelar el registro? No se guardarán los datos", "WARNING",
