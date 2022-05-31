@@ -1,12 +1,15 @@
 
 package proyecto1;
 
+import dao.GrupoDAO;
 import java.awt.Color;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -19,13 +22,13 @@ public class RegistroGrupo extends javax.swing.JFrame {
     public RegistroGrupo() {
         initComponents();
         try {
-            Fondo fondo = new Fondo(ImageIO.read(new File("C:/Users/Carla Olvera/Documents/GitHub/Proyecto-SIGA/ProyectoJavaEscuela/SIGA/src/main/java/proyecto1/Fondo8.jpg")));
+            Fondo fondo = new Fondo(ImageIO.read(new File("C:/Users/adair/Documents/GitHub/Proyecto-SIGA/ProyectoJavaEscuela/SIGA/src/main/java/proyecto1/Fondo8.jpg")));
             JPanel panel = (JPanel) this.getContentPane();
             panel.setBorder(fondo);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        jLabel1.setIcon(new ImageIcon(new ImageIcon("C:/Users/Carla Olvera/Documents/GitHub/Proyecto-SIGA/ProyectoJavaEscuela/SIGA/src/main/java/proyecto1/logoEsc.png").getImage().getScaledInstance(158,128, Image.SCALE_DEFAULT)));
+        jLabel1.setIcon(new ImageIcon(new ImageIcon("C:/Users/adair/Documents/GitHub/Proyecto-SIGA/ProyectoJavaEscuela/SIGA/src/main/java/proyecto1/logoEsc.png").getImage().getScaledInstance(158,128, Image.SCALE_DEFAULT)));
         jPanel1.setBackground(new Color(82, 102, 222, 150));
         jPanel2.setBackground(new Color(0,0,0,50));
         jPanel3.setBackground(new Color(0,0,0,50));
@@ -335,12 +338,11 @@ public class RegistroGrupo extends javax.swing.JFrame {
     private List<Grupo> lista=new ArrayList<Grupo>();
     private void btnAltaGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaGrupoActionPerformed
         Grupo a=new Grupo();
-        String DiaGrupo = (String) cbxDiaGrupo.getSelectedItem();
-        String HorarioGrupo = (String) cbxHorarioGrupo.getSelectedItem();
-            lista.add(a);
-            actualizarLista();
-            JOptionPane.showMessageDialog(rootPane, "Grupo guardado");
-            Limpiar();
+        try {
+            guardarGrupo();
+        } catch (Exception ex) {
+            Logger.getLogger(RegistroGrupo.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnAltaGrupoActionPerformed
 
     private void btnAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlumnosActionPerformed
@@ -435,13 +437,20 @@ public class RegistroGrupo extends javax.swing.JFrame {
         txtBuscarAlumno.setText("Buscar");
         
     }
-    private void actualizarLista() {
-        DefaultListModel datos = new DefaultListModel();
-        for (int i = 0; i < lista.size(); i++) {
-            Grupo a = lista.get(i);
-            datos.addElement(a.getGrupo());
-        }
-        //this.listAlumnos.setModel(datos);
+    private void guardarGrupo() throws Exception {
+        GrupoDAO dao = new GrupoDAO();
+        Grupo g=new Grupo();
+        g.setDia((String)this.cbxDiaGrupo.getSelectedItem());
+        g.setHorario((String)this.cbxHorarioGrupo.getSelectedItem());
+
+        if ("".equals((String)this.cbxDiaGrupo.getSelectedItem()) || "".equals((String)this.cbxHorarioGrupo.getSelectedItem())) {
+            JOptionPane.showMessageDialog(rootPane, "Faltan datos");
+        } 
+        else {
+            dao.agregarGrupo(g);
+            JOptionPane.showMessageDialog(rootPane, "Grupo registrado correctamente");
+            Limpiar();
+        }    
     }
 }
 
