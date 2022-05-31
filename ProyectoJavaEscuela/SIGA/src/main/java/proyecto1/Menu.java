@@ -307,7 +307,6 @@ public class Menu extends javax.swing.JFrame {
             mostrarGrupos();
         }else{
             mostrarAlumnos();
-            mostrarGrupos();
         }
     }//GEN-LAST:event_txtBuscarCaretUpdate
 
