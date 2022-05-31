@@ -409,6 +409,5 @@ if (JOptionPane.showConfirmDialog(null, "¿Desea cerrar la sesión?", "WARNING",
             
         datos.addElement(Alumno.get(i));
         }
-        this.listDatos.setModel(datos);
     }
 }
