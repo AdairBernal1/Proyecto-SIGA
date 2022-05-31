@@ -49,6 +49,7 @@ public class Alumno {
     public void setFechaInsc(String fechaInsc) {
         this.fechaInsc = fechaInsc;
     }
+    
     int id;
     String nombre;
     String apellido;

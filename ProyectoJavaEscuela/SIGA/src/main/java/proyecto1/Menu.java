@@ -2,7 +2,9 @@
 package proyecto1;
 
 import dao.AlumnoDAO;
-import gui.DisplayJTableList;
+import dao.GrupoDAO;
+import gui.AlumnosJTable;
+import gui.GruposJTable;
 import java.awt.Color;
 import java.awt.Image;
 import java.io.File;
@@ -17,6 +19,8 @@ import javax.swing.JPanel;
 import javax.swing.ListModel;
 
 public class Menu extends javax.swing.JFrame {
+    boolean CurrentAlumnos;
+    boolean CurrentGrupos;
     ArrayList Alumno = new ArrayList();
 
     
@@ -284,40 +288,26 @@ public class Menu extends javax.swing.JFrame {
 
     private void btnAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlumnosActionPerformed
         //accion para listar alumnos
-        MostrarAlumnos();
+        CurrentGrupos = false;
+        CurrentAlumnos = true;
+        mostrarAlumnos();
     }//GEN-LAST:event_btnAlumnosActionPerformed
 
     private void btnGruposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGruposActionPerformed
          //accion para listar los grupos
+         CurrentAlumnos = false;
+         CurrentGrupos = true;
+         mostrarGrupos();
     }//GEN-LAST:event_btnGruposActionPerformed
 
     private void txtBuscarCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtBuscarCaretUpdate
-
-        try {
-            AlumnoDAO AlumnoDao = new AlumnoDAO();
-            String valor = txtBuscar.getText();
-
-            List<Alumno> Alumnos = null;
-
-            if (valor != null && valor.trim().length() > 0) {
-                Alumnos = AlumnoDao.searchAlumno(valor);
-            } else {
-                Alumnos = AlumnoDao.getAllAlumnos();
-            }
-
-            // create the model and update the "table"
-            DisplayJTableList model = new DisplayJTableList(Alumnos);
-
-            jTable2.setModel(model);
-
-            /*
-            for (Alumno temp : Alumnos) {
-                    System.out.println(temp);
-            }
-            */
-        } 
-        catch (Exception exc) {
-            JOptionPane.showMessageDialog(this, "Error: " + exc, "Error", JOptionPane.ERROR_MESSAGE); 
+        if(CurrentAlumnos){
+            mostrarAlumnos();
+        }else if(CurrentGrupos){
+            mostrarGrupos();
+        }else{
+            mostrarAlumnos();
+            mostrarGrupos();
         }
     }//GEN-LAST:event_txtBuscarCaretUpdate
 
@@ -402,12 +392,44 @@ if (JOptionPane.showConfirmDialog(null, "¿Desea cerrar la sesión?", "WARNING",
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
-    private void MostrarAlumnos() {
-        DefaultListModel datos = new DefaultListModel();
-        datos.removeAllElements();
-        for (int i = 0; i < Alumno.size(); i++){
-            
-        datos.addElement(Alumno.get(i));
+    private void mostrarAlumnos() {
+        try {
+            AlumnoDAO AlumnoDao = new AlumnoDAO();
+            String valor = txtBuscar.getText();
+
+            List<Alumno> Alumnos = null;
+
+            if (valor != null && valor.trim().length() > 0) {
+                Alumnos = AlumnoDao.searchAlumno(valor);
+            } else {
+                Alumnos = AlumnoDao.getAllAlumnos();
+            }
+            AlumnosJTable model = new AlumnosJTable(Alumnos);
+
+            jTable2.setModel(model);
+        } 
+        catch (Exception exc) {
+            JOptionPane.showMessageDialog(this, "Error: " + exc, "Error", JOptionPane.ERROR_MESSAGE); 
+        }
+    }
+    private void mostrarGrupos() {
+        try {
+            GrupoDAO GrupoDao = new GrupoDAO();
+            String valor = txtBuscar.getText();
+
+            List<Grupo> Grupos = null;
+
+            if (valor != null && valor.trim().length() > 0) {
+                Grupos = GrupoDao.searchGrupo(valor);
+            } else {
+                Grupos = GrupoDao.getAllGrupos();
+            }
+            GruposJTable model = new GruposJTable(Grupos);
+
+            jTable2.setModel(model);
+        } 
+        catch (Exception exc) {
+            JOptionPane.showMessageDialog(this, "Error: " + exc, "Error", JOptionPane.ERROR_MESSAGE); 
         }
     }
 }

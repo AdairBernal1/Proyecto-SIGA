@@ -12,7 +12,7 @@ import proyecto1.Alumno;
  *
  * @author adair
  */
-public class DisplayJTableList extends AbstractTableModel {
+public class AlumnosJTable extends AbstractTableModel {
     
     private static final int APELLIDO_COL = 0;
     private static final int NOMBRE_COL = 1;
@@ -26,7 +26,7 @@ public class DisplayJTableList extends AbstractTableModel {
                     "Grupo", "Fecha Ingreso", "Matricula" };
     private List<Alumno> Alumnos;
 
-    public DisplayJTableList(List<Alumno> theAlumnos) {
+    public AlumnosJTable(List<Alumno> theAlumnos) {
             Alumnos = theAlumnos;
     }
 
