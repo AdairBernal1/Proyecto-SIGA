@@ -11,16 +11,18 @@ import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.ListModel;
 
 public class Menu extends javax.swing.JFrame {
-    ArrayList alumnos = new ArrayList();
-    DefaultListModel datos = new DefaultListModel();
+    ArrayList Alumno = new ArrayList();
+
     
 
     public Menu() {
         
         initComponents();
-        listDatos.setModel(datos);
+        ListModel<Alumno> datos = null;
+        listDatos.setModel((ListModel<String>) Alumno);
         
         
         try {
@@ -290,10 +292,11 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGruposActionPerformed
 
     private void txtBuscarCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtBuscarCaretUpdate
-        String valor = txtBuscar.getText();
+ 
+    //String apellido = txtBuscar.getText();
         
        /* for (int i = 0; i < listDatos.getRowCount(); i++){
-            if (listDatos.getValueAt(i, 0).equals(valor)){
+            if (listDatos.getValueAt(i, 0).equals(apellido)){
                listDatos.changeSelection(i, 0, false, false);
             }
         }*/
@@ -328,6 +331,10 @@ if (JOptionPane.showConfirmDialog(null, "¿Desea cerrar la sesión?", "WARNING",
     }
     }//GEN-LAST:event_btnLogoutActionPerformed
 
+    public static void Mostrar(){
+        //para la ventana de los datos del alumno
+    }
+    
     public static void main(String args[]) {
         
         try {
@@ -377,9 +384,12 @@ if (JOptionPane.showConfirmDialog(null, "¿Desea cerrar la sesión?", "WARNING",
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
     private void MostrarAlumnos() {
+        DefaultListModel datos = new DefaultListModel();
         datos.removeAllElements();
-        for (int i = 0; i < alumnos.size(); i++){
-        datos.addElement(alumnos.get(i));
+        for (int i = 0; i < Alumno.size(); i++){
+            
+        datos.addElement(Alumno.get(i));
         }
+        this.listDatos.setModel(datos);
     }
 }
