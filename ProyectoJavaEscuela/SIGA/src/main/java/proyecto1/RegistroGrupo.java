@@ -48,7 +48,7 @@ public class RegistroGrupo extends javax.swing.JFrame {
         cbxDiaGrupo = new javax.swing.JComboBox<>();
         cbxHorarioGrupo = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbxTeacher = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         btnAlumnos = new javax.swing.JButton();
         btnGrupos = new javax.swing.JButton();
@@ -99,8 +99,8 @@ public class RegistroGrupo extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Teacher");
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "adair", "tonta1", "tonta2" }));
+        cbxTeacher.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        cbxTeacher.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "adair", "tonta1", "tonta2" }));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -116,7 +116,7 @@ public class RegistroGrupo extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cbxHorarioGrupo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbxDiaGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cbxTeacher, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(30, 30, 30))
         );
         jPanel4Layout.setVerticalGroup(
@@ -133,7 +133,7 @@ public class RegistroGrupo extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
@@ -294,13 +294,11 @@ public class RegistroGrupo extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCancelar)
                         .addGap(150, 150, 150))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -415,10 +413,10 @@ public class RegistroGrupo extends javax.swing.JFrame {
     private javax.swing.JButton btnPrincipal;
     private javax.swing.JComboBox<String> cbxDiaGrupo;
     private javax.swing.JComboBox<String> cbxHorarioGrupo;
+    private javax.swing.JComboBox<String> cbxTeacher;
     private javax.swing.JCheckBox chekbxAñadir;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -442,8 +440,9 @@ public class RegistroGrupo extends javax.swing.JFrame {
         Grupo g=new Grupo();
         g.setDia((String)this.cbxDiaGrupo.getSelectedItem());
         g.setHorario((String)this.cbxHorarioGrupo.getSelectedItem());
+        g.setTeacher((String)this.cbxTeacher.getSelectedItem());
 
-        if ("".equals((String)this.cbxDiaGrupo.getSelectedItem()) || "".equals((String)this.cbxHorarioGrupo.getSelectedItem())) {
+        if ("".equals((String)this.cbxDiaGrupo.getSelectedItem()) || "".equals((String)this.cbxHorarioGrupo.getSelectedItem()) || "".equals((String)this.cbxHorarioGrupo.getSelectedItem()))  {
             JOptionPane.showMessageDialog(rootPane, "Faltan datos");
         } 
         else {

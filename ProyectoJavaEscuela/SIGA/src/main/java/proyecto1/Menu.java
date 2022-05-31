@@ -1,11 +1,14 @@
 
 package proyecto1;
 
+import dao.AlumnoDAO;
+import gui.DisplayJTableList;
 import java.awt.Color;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -19,9 +22,7 @@ public class Menu extends javax.swing.JFrame {
 
     public Menu() {
         
-        initComponents();
-        listDatos.setModel(datos);
-        
+        initComponents();      
         
         try {
             Fondo fondo = new Fondo(ImageIO.read(new File("C:/Users/adair/Documents/GitHub/Proyecto-SIGA/ProyectoJavaEscuela/SIGA/src/main/java/proyecto1/Fondo8.jpg")));
@@ -53,12 +54,12 @@ public class Menu extends javax.swing.JFrame {
         bntAlta = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        listDatos = new javax.swing.JList<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -130,7 +131,7 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(btnAlumnos)
                 .addGap(18, 18, 18)
                 .addComponent(btnGrupos)
-                .addContainerGap(275, Short.MAX_VALUE))
+                .addContainerGap(298, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -198,8 +199,6 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane5.setViewportView(listDatos);
-
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -226,7 +225,7 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 766, Short.MAX_VALUE))
+                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 769, Short.MAX_VALUE))
                     .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -241,6 +240,8 @@ public class Menu extends javax.swing.JFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jScrollPane2.setViewportView(jTable2);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -254,7 +255,7 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtBuscar))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
@@ -272,7 +273,7 @@ public class Menu extends javax.swing.JFrame {
                             .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane5))
+                        .addComponent(jScrollPane2))
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -290,13 +291,33 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGruposActionPerformed
 
     private void txtBuscarCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtBuscarCaretUpdate
-        String valor = txtBuscar.getText();
-        
-       /* for (int i = 0; i < listDatos.getRowCount(); i++){
-            if (listDatos.getValueAt(i, 0).equals(valor)){
-               listDatos.changeSelection(i, 0, false, false);
+
+        try {
+            AlumnoDAO AlumnoDao = new AlumnoDAO();
+            String valor = txtBuscar.getText();
+
+            List<Alumno> Alumnos = null;
+
+            if (valor != null && valor.trim().length() > 0) {
+                Alumnos = AlumnoDao.searchAlumno(valor);
+            } else {
+                Alumnos = AlumnoDao.getAllAlumnos();
             }
-        }*/
+
+            // create the model and update the "table"
+            DisplayJTableList model = new DisplayJTableList(Alumnos);
+
+            jTable2.setModel(model);
+
+            /*
+            for (Alumno temp : Alumnos) {
+                    System.out.println(temp);
+            }
+            */
+        } 
+        catch (Exception exc) {
+            JOptionPane.showMessageDialog(this, "Error: " + exc, "Error", JOptionPane.ERROR_MESSAGE); 
+        }
     }//GEN-LAST:event_txtBuscarCaretUpdate
 
     private void bntAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAltaActionPerformed
@@ -371,9 +392,9 @@ if (JOptionPane.showConfirmDialog(null, "¿Desea cerrar la sesión?", "WARNING",
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JList<String> listDatos;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
     private void MostrarAlumnos() {

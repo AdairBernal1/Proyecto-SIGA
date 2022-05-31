@@ -49,11 +49,28 @@ public class Alumno {
     public void setFechaInsc(String fechaInsc) {
         this.fechaInsc = fechaInsc;
     }
+    int id;
     String nombre;
     String apellido;
     String telefono;
     String tipoInsc;
     String grupo;
     String fechaInsc;
+    
+    public Alumno(){
+        
+    }
+    
+    //Constructor para busquedas y displays
+    public Alumno (int id, String nombre, String apellido, String telefono, String tipoInsc, String grupo, String fechaInsc){
+        super();
+        this.id=id;
+        this.nombre=nombre;
+        this.apellido=apellido;
+        this.telefono=telefono;
+        this.tipoInsc=tipoInsc;
+        this.grupo=grupo;
+        this.fechaInsc=fechaInsc;
+    }
     
 }
