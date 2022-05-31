@@ -14,10 +14,11 @@ import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.ListModel;
 
 public class Menu extends javax.swing.JFrame {
-    ArrayList alumnos = new ArrayList();
-    DefaultListModel datos = new DefaultListModel();
+    ArrayList Alumno = new ArrayList();
+
     
 
     public Menu() {
@@ -349,6 +350,10 @@ if (JOptionPane.showConfirmDialog(null, "¿Desea cerrar la sesión?", "WARNING",
     }
     }//GEN-LAST:event_btnLogoutActionPerformed
 
+    public static void Mostrar(){
+        //para la ventana de los datos del alumno
+    }
+    
     public static void main(String args[]) {
         
         try {
@@ -398,9 +403,12 @@ if (JOptionPane.showConfirmDialog(null, "¿Desea cerrar la sesión?", "WARNING",
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
     private void MostrarAlumnos() {
+        DefaultListModel datos = new DefaultListModel();
         datos.removeAllElements();
-        for (int i = 0; i < alumnos.size(); i++){
-        datos.addElement(alumnos.get(i));
+        for (int i = 0; i < Alumno.size(); i++){
+            
+        datos.addElement(Alumno.get(i));
         }
+        this.listDatos.setModel(datos);
     }
 }
