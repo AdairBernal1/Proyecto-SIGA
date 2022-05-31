@@ -5,16 +5,24 @@ import java.awt.Color;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Menu extends javax.swing.JFrame {
+    ArrayList alumnos = new ArrayList();
+    DefaultListModel datos = new DefaultListModel();
+    
 
     public Menu() {
-        //getContentPane().setBackground(new Color(131, 132, 138));
+        
         initComponents();
+        listDatos.setModel(datos);
+        
+        
         try {
             Fondo fondo = new Fondo(ImageIO.read(new File("C:/Users/Carla Olvera/Documents/GitHub/Proyecto-SIGA/ProyectoJavaEscuela/SIGA/src/main/java/proyecto1/Fondo8.jpg")));
             JPanel panel = (JPanel) this.getContentPane();
@@ -274,6 +282,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void btnAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlumnosActionPerformed
         //accion para listar alumnos
+        MostrarAlumnos();
     }//GEN-LAST:event_btnAlumnosActionPerformed
 
     private void btnGruposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGruposActionPerformed
@@ -367,4 +376,10 @@ if (JOptionPane.showConfirmDialog(null, "¿Desea cerrar la sesión?", "WARNING",
     private javax.swing.JList<String> listDatos;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
+    private void MostrarAlumnos() {
+        datos.removeAllElements();
+        for (int i = 0; i < alumnos.size(); i++){
+        datos.addElement(alumnos.get(i));
+        }
+    }
 }
