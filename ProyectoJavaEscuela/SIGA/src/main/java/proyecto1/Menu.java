@@ -57,6 +57,7 @@ public class Menu extends javax.swing.JFrame {
         btnLogout = new javax.swing.JButton();
         btnNvoGrupo = new javax.swing.JButton();
         bntAlta = new javax.swing.JButton();
+        btnImprimirAlumnos = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
@@ -170,6 +171,15 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        btnImprimirAlumnos.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        btnImprimirAlumnos.setText("Lista de alumnos");
+        btnImprimirAlumnos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnImprimirAlumnos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirAlumnosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -179,8 +189,9 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnNvoGrupo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bntAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .addComponent(bntAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnImprimirAlumnos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,6 +200,8 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(bntAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(btnNvoGrupo)
+                .addGap(36, 36, 36)
+                .addComponent(btnImprimirAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
@@ -352,9 +365,12 @@ if (JOptionPane.showConfirmDialog(null, "¿Desea cerrar la sesión?", "WARNING",
     }
     }//GEN-LAST:event_btnLogoutActionPerformed
 
-    public static void Mostrar(){
-        //para la ventana de los datos del alumno
-    }
+    private void btnImprimirAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirAlumnosActionPerformed
+        Alumno al;
+        List <Alumno>lista = new ArrayList<>();
+           
+    }//GEN-LAST:event_btnImprimirAlumnosActionPerformed
+
     
     public static void main(String args[]) {
         
@@ -388,6 +404,7 @@ if (JOptionPane.showConfirmDialog(null, "¿Desea cerrar la sesión?", "WARNING",
     private javax.swing.JButton bntAlta;
     private javax.swing.JButton btnAlumnos;
     private javax.swing.JButton btnGrupos;
+    private javax.swing.JButton btnImprimirAlumnos;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnNvoGrupo;
     private javax.swing.JButton btnPrincipal;

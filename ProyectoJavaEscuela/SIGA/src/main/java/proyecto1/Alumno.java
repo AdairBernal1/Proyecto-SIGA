@@ -50,9 +50,17 @@ public class Alumno {
         this.fechaInsc = fechaInsc;
     }
     
+    public String getNomCompleto() {
+        return nomCompleto;
+    }
+
+    public void setNomCompleto(String nomCompleto) {
+        this.nomCompleto = nomCompleto;
+    }
     int id;
     String nombre;
     String apellido;
+    String nomCompleto;
     String telefono;
     String tipoInsc;
     String grupo;
@@ -68,6 +76,7 @@ public class Alumno {
         this.id=id;
         this.nombre=nombre;
         this.apellido=apellido;
+        this.nomCompleto=
         this.telefono=telefono;
         this.tipoInsc=tipoInsc;
         this.grupo=grupo;

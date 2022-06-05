@@ -90,7 +90,7 @@ public class AlumnoDAO {
 	
     private Alumno convertRowToAlumno(ResultSet myRs) throws SQLException {
 
-            int id = myRs.getInt("idalumnos");
+            int id = myRs.getInt("idalumnos");          
             String nombre = myRs.getString("nombre");
             String apellido = myRs.getString("apellido");
             String tel = myRs.getString("tel");

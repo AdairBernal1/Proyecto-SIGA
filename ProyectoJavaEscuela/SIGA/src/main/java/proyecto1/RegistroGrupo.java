@@ -288,9 +288,9 @@ public class RegistroGrupo extends javax.swing.JFrame {
         }else{
         }
     }//GEN-LAST:event_btnCancelarActionPerformed
-    private List<Grupo> lista=new ArrayList<Grupo>();
+    //private List<Grupo> lista=new ArrayList<Grupo>();
     private void btnAltaGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaGrupoActionPerformed
-        Grupo a=new Grupo();
+        //Grupo a=new Grupo();
         try {
             guardarGrupo();
         } catch (Exception ex) {
