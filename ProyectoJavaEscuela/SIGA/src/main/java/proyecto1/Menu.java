@@ -9,14 +9,24 @@ import java.awt.Color;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.ListModel;
+import sun.util.logging.PlatformLogger;
+
+
+
 
 public class Menu extends javax.swing.JFrame {
     boolean CurrentAlumnos;
@@ -364,11 +374,11 @@ if (JOptionPane.showConfirmDialog(null, "¿Desea cerrar la sesión?", "WARNING",
     // no option
     }
     }//GEN-LAST:event_btnLogoutActionPerformed
-
+    
+//    Connection con;
+//    PreparedStatement pst;  
     private void btnImprimirAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirAlumnosActionPerformed
-        Alumno al;
-        List <Alumno>lista = new ArrayList<>();
-           
+
     }//GEN-LAST:event_btnImprimirAlumnosActionPerformed
 
     

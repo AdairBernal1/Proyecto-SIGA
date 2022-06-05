@@ -76,7 +76,7 @@ public class Alumno {
         this.id=id;
         this.nombre=nombre;
         this.apellido=apellido;
-        this.nomCompleto=
+        this.nomCompleto=(apellido+" "+nombre);
         this.telefono=telefono;
         this.tipoInsc=tipoInsc;
         this.grupo=grupo;
