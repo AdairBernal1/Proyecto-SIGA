@@ -37,6 +37,7 @@ import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
+import reportes.AlumnosDataSource;
 
 
 
@@ -397,7 +398,7 @@ if (JOptionPane.showConfirmDialog(null, "¿Desea cerrar la sesión?", "WARNING",
             
             try{
                 reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
-                JasperPrint jprint = JasperFillManager.fillReport(reporte, null, con);
+                JasperPrint jprint = JasperFillManager.fillReport(reporte, null, AlumnosDataSource.getDataSource());
                 
                 JasperViewer viewer = new JasperViewer(jprint, false);
                 viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -405,7 +406,9 @@ if (JOptionPane.showConfirmDialog(null, "¿Desea cerrar la sesión?", "WARNING",
                 
             } catch(JRException ex){
                 Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            } catch (Exception ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnImprimirAlumnosActionPerformed
 
     

@@ -14,26 +14,49 @@ public class AlumnosDataSource implements JRDataSource {
     
 //    List<Alumno> Alumnos= new ArrayList <Alumno>();
     
-    private final Object [][] listadoAlumnos;
+    private List<Alumno> listadoAlumnos = null;
+    AlumnoDAO AlumnoDao = new AlumnoDAO();
     private int index;
     
-    public AlumnosDataSource(){
-    index = -1;
-    listadoAlumnos = new Object[][]{
-        
-        
-    
-    
-    };
+    public AlumnosDataSource() throws Exception{
+        index = -1;
+        listadoAlumnos = AlumnoDao.getAllAlumnos();
     }
     @Override
     public boolean next() throws JRException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        index += 1;
+        return (index < listadoAlumnos.size());
     }
 
     @Override
     public Object getFieldValue(JRField jrf) throws JRException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Object value = null;
+        Alumno alumno = new Alumno();
+        
+        String fieldname = jrf.getName();
+        
+        switch(fieldname) {
+            
+            case "nomCompleto":
+                alumno = listadoAlumnos.get(index);
+                value = alumno.getNomCompleto();
+                break;
+                
+            case "grupo":
+                alumno = listadoAlumnos.get(index);
+                value = alumno.getGrupo();
+                break;
+                
+            case "tipoInsc":
+                alumno = listadoAlumnos.get(index);
+                value = alumno.getTipoInsc();
+                break;
+        }
+        return value;
+    }
+    
+    public static JRDataSource getDataSource() throws Exception{
+        return new AlumnosDataSource();
     }
     
 }   
