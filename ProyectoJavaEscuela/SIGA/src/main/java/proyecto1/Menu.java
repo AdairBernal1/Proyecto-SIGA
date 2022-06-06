@@ -393,7 +393,7 @@ if (JOptionPane.showConfirmDialog(null, "¿Desea cerrar la sesión?", "WARNING",
     private void btnImprimirAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirAlumnosActionPerformed
     
             JasperReport reporte;
-            String path = ("C:\\Users\\Carla Olvera\\Documents\\GitHub\\Proyecto-SIGA\\ProyectoJavaEscuela\\SIGA\\src\\main\\java\\reportes\\ReporteAlumnos.jasper");
+            String path = ("C:\\Users\\adair\\Documents\\GitHub\\Proyecto-SIGA\\ProyectoJavaEscuela\\SIGA\\src\\main\\java\\reportes\\ReporteAlumnos.jasper");
             
             try{
                 reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
