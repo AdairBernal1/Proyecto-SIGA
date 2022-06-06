@@ -23,7 +23,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.ListModel;
-import sun.util.logging.PlatformLogger;
 import java.lang.Object;
 import java.security.Principal;
 import net.sf.jasperreports.engine.JRException;
