@@ -37,9 +37,9 @@ public class AlumnosDataSource implements JRDataSource {
         
         switch(fieldname) {
             
-            case "nomCompleto":
+            case "nombre":
                 alumno = listadoAlumnos.get(index);
-                value = alumno.getNomCompleto();
+                value = alumno.getNombre();
                 break;
                 
             case "grupo":

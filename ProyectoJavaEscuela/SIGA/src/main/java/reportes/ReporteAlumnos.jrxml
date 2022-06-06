@@ -36,17 +36,39 @@
 		<queryString>
 			<![CDATA[]]>
 		</queryString>
-		<field name="nomCompleto" class="java.lang.String"/>
-		<field name="id" class="java.lang.Integer"/>
-		<field name="grupo" class="java.lang.String"/>
-		<field name="teacher" class="java.lang.String"/>
+		<field name="nombre" class="java.lang.String"/>
 		<field name="tipo_ins" class="java.lang.String"/>
+		<field name="grupo" class="java.lang.String"/>
 	</subDataset>
 	<parameter name="logoEsc" class="java.io.InputStream"/>
 	<parameter name="ds" class="net.sf.jasperreports.engine.data.JRBeanArrayDataSource"/>
 	<queryString>
-		<![CDATA[]]>
+		<![CDATA[SELECT * FROM alumnos]]>
 	</queryString>
+	<field name="idalumnos" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="apellido" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tel" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipo_ins" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="grupo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha_ins" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="foto" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -125,11 +147,11 @@
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="30" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="245" height="30" uuid="d97683aa-8a64-4a98-884b-76da36eb6452"/>
+								<reportElement x="0" y="0" width="245" height="30" uuid="0c7f0e14-229f-4040-a5ab-c957f94f016b"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Centaur" size="14"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{nomCompleto}]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
@@ -146,7 +168,7 @@
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="30" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="151" height="30" uuid="4493cda2-817c-4087-aa9a-d7de1cb7e52b"/>
+								<reportElement x="0" y="0" width="151" height="30" uuid="3223fcd4-9e1a-4cb2-802d-ed21468a8099"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Centaur" size="14"/>
 								</textElement>
@@ -167,7 +189,7 @@
 						</jr:columnHeader>
 						<jr:detailCell style="Table_TD" height="30" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="145" height="30" uuid="ae869f7a-a140-4db9-b083-e5c2d52a9705"/>
+								<reportElement x="0" y="0" width="145" height="30" uuid="967d358c-09de-48d4-9bf9-75504e950422"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Centaur" size="14"/>
 								</textElement>
