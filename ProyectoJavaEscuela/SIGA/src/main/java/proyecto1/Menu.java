@@ -23,7 +23,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.ListModel;
-import sun.util.logging.PlatformLogger;
 
 
 
