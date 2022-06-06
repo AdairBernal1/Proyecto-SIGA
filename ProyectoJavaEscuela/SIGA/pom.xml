@@ -11,6 +11,18 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
     <dependencies>
+        
+        
+        <dependency>
+            <groupId>com.mebigfatguy</groupId>
+            <artifactId>commons-beanutils2</artifactId>
+            <version>1.9.9</version>
+        </dependency>
+
+        
+        
+        
+        
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -95,17 +107,6 @@
             <groupId>com.lowagie</groupId>
             <artifactId>itext</artifactId>
             <version>2.1.7</version>
-        </dependency>
-        <dependency>
-            <groupId>bouncycastle</groupId>
-            <artifactId>bcmail-jdk14</artifactId>
-            <version>138</version>
-        </dependency>
-        <dependency>
-            <groupId>org.bouncycastle</groupId>
-            <artifactId>bcmail-jdk14</artifactId>
-            <version>1.38</version>
-            <type>pom.sig</type>
         </dependency>
         <dependency>
             <groupId>org.lucee</groupId>
