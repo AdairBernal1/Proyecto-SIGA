@@ -38,6 +38,12 @@
             <artifactId>jasperreports</artifactId>
             <version>6.19.1</version>                       
             <type>jar</type>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jfree</groupId>
+                    <artifactId>jfreechart</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.codehaus.castor</groupId>

@@ -25,6 +25,7 @@ import javax.swing.JPanel;
 import javax.swing.ListModel;
 import sun.util.logging.PlatformLogger;
 import java.lang.Object;
+import java.security.Principal;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -33,6 +34,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.base.JRBaseQuery;
 import net.sf.jasperreports.engine.design.JRDesignQuery;
 import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
@@ -386,58 +388,24 @@ if (JOptionPane.showConfirmDialog(null, "¿Desea cerrar la sesión?", "WARNING",
     }
     }//GEN-LAST:event_btnLogoutActionPerformed
     
-//    Connection con;
-//    PreparedStatement pst;  
+    Connection con;
+    //PreparedStatement pst;  
     private void btnImprimirAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirAlumnosActionPerformed
-        Conexion cc = new Conexion();
-        Connection con = cc.Conexion();
-        try 
-        {
-          Class.forName("com.mysql.jdbc.Driver");
-          String query = "select * from records";
+    
+            JasperReport reporte;
+            String path = ("C:\\Users\\Carla Olvera\\Documents\\GitHub\\Proyecto-SIGA\\ProyectoJavaEscuela\\SIGA\\src\\main\\java\\reportes\\ReporteAlumnos.jasper");
             
-          JRDesignQuery updateQuery = new JRDesignQuery();
-          updateQuery.setText(query);
-            
-          JasperDesign jdesign = null;
-          jdesign.setQuery(updateQuery);
-            
-          JasperReport jreport = JasperCompileManager.compileReport(jdesign);
-          JasperPrint jprint = JasperFillManager.fillReport(jreport, null,con);
-            
-          JasperViewer.viewReport(jprint);
-           
-            
-        } catch (ClassNotFoundException | JRException ex) {
-        }
-         
-        JasperDesign jdesign = null;
-        try {
-            jdesign = JRXmlLoader.load("C:\\Users\\kobinath\\Documents\\NetBeansProjects\\jsperstudent\\src\\studentreport\\report1.jrxml");
-        } catch (JRException ex) {
-            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            String query = "select * from records";
-            
-            JRDesignQuery updateQuery = new JRDesignQuery();
-            updateQuery.setText(query);
-            
-            jdesign.setQuery(updateQuery);
-            
-            JasperReport jreport = null;
-        try {
-            jreport = JasperCompileManager.compileReport(jdesign);
-        } catch (JRException ex) {
-            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            JasperPrint jprint = null;
-        try {
-            jprint = JasperFillManager.fillReport(jreport, null,con);
-        } catch (JRException ex) {
-            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            
-           JasperViewer.viewReport(jprint);
+            try{
+                reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+                JasperPrint jprint = JasperFillManager.fillReport(reporte, null, con);
+                
+                JasperViewer viewer = new JasperViewer(jprint, false);
+                viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                viewer.setVisible(true);
+                
+            } catch(JRException ex){
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }//GEN-LAST:event_btnImprimirAlumnosActionPerformed
 
     
