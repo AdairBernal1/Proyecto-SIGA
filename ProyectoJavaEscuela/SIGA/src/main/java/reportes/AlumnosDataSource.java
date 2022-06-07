@@ -20,7 +20,18 @@ public class AlumnosDataSource implements JRDataSource {
     
     public AlumnosDataSource() throws Exception{
         index = -1;
+<<<<<<< Updated upstream
         listadoAlumnos = AlumnoDao.getAllAlumnos();
+=======
+        listadoAlumnos = new Object[][]{
+                    {"Carla", "Sabado12:00pm - 3:00pm", "6681902070", "Semanal"},
+                    {"carla", "Domingo12:00pm - 3:00pm", "6681902070", "Mensual"},
+                    {"javc", "Sabado9:00am - 12:00pm", "456456", "Semanal"},
+                    {"carla", "Domingo12:00pm - 3:00pm", "6681902070", "Mensual"},
+                    {"carla", "Sabado9:00am - 12:00pm", "6681902070", "Semanal"},
+                    {"adair", "Domingo9:00am - 12:00pm", "666819493", "Mensual"},
+                  };
+>>>>>>> Stashed changes
     }
     @Override
     public boolean next() throws JRException {
@@ -37,6 +48,7 @@ public class AlumnosDataSource implements JRDataSource {
         
         switch(fieldname) {
             
+<<<<<<< Updated upstream
             case "nomCompleto":
                 alumno = listadoAlumnos.get(index);
                 value = alumno.getNomCompleto();
@@ -51,6 +63,22 @@ public class AlumnosDataSource implements JRDataSource {
                 alumno = listadoAlumnos.get(index);
                 value = alumno.getTipoInsc();
                 break;
+=======
+            case "nombre":
+                value = listadoAlumnos[index][0];
+            break;
+            
+            case "grupo":
+                value = listadoAlumnos[index][1];                
+            break;
+            
+            case "tipo_ins":
+                value = listadoAlumnos[index][3];
+            break;
+            
+
+            
+>>>>>>> Stashed changes
         }
         return value;
     }
